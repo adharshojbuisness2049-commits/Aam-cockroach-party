@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aam Cockroach Party (ACP) — AamCockroachParty.org</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rajdhani:wght@400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          obsidian: '#080a06',
+          chitin: '#0d110a',
+          bark: '#5C2C16',
+          amber: '#8B4513',
+          gold: '#c9a84c',
+          neon: '#39ff14',
+          mint: '#00e5a0',
+          glow: '#7fff00',
+        },
+        fontFamily: {
+          bebas: ['Bebas Neue', 'sans-serif'],
+          raj: ['Rajdhani', 'sans-serif'],
+          mono: ['Share Tech Mono', 'monospace'],
+        }
+      }
+    }
+  }
+</script>
+<style>
+  body { background: #080a06; color: #d4cfc8; font-family: 'Rajdhani', sans-serif; }
+
+  /* Noise texture overlay */
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none; z-index: 0; opacity: 0.35;
+  }
+
+  .neon-btn {
+    background: #39ff14; color: #080a06;
+    font-family: 'Rajdhani', sans-serif; font-weight: 700; letter-spacing: 0.08em;
+    box-shadow: 0 0 12px #39ff1480, 0 0 30px #39ff1430;
+    transition: all 0.2s;
+  }
+  .neon-btn:hover { box-shadow: 0 0 20px #39ff14cc, 0 0 50px #39ff1466; transform: translateY(-2px); }
+
+  .ghost-btn {
+    border: 1.5px solid #39ff14; color: #39ff14;
+    font-family: 'Rajdhani', sans-serif; font-weight: 700; letter-spacing: 0.08em;
+    box-shadow: 0 0 8px #39ff1440;
+    transition: all 0.2s;
+  }
+  .ghost-btn:hover { background: #39ff1415; box-shadow: 0 0 20px #39ff1480; transform: translateY(-2px); }
+
+  /* Chitin card */
+  .chitin-card {
+    background: linear-gradient(135deg, #0f1a0c 0%, #0a1208 100%);
+    border: 1px solid #2a3a1a;
+    box-shadow: inset 0 1px 0 #39ff1415, 0 4px 24px #00000060;
+    position: relative; overflow: hidden;
+    transition: transform 0.25s, box-shadow 0.25s;
+  }
+  .chitin-card::before {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(135deg, #39ff1408 0%, transparent 60%);
+    pointer-events: none;
+  }
+  .chitin-card:hover { transform: translateY(-4px); box-shadow: 0 0 0 1px #39ff1440, 0 8px 40px #39ff1420; }
+
+  /* Campaign card */
+  .camp-card {
+    background: linear-gradient(160deg, #12190e 0%, #0a1008 100%);
+    border: 1px solid #39ff1425;
+    position: relative; overflow: hidden;
+    transition: all 0.3s;
+  }
+  .camp-card::after {
+    content: ''; position: absolute; bottom: 0; left: 0; right: 0;
+    height: 2px; background: linear-gradient(90deg, transparent, #39ff14, transparent);
+    transform: scaleX(0); transition: transform 0.3s;
+  }
+  .camp-card:hover::after { transform: scaleX(1); }
+  .camp-card:hover { box-shadow: 0 0 30px #39ff1420; }
+
+  /* Nav */
+  nav { background: #080a06ee; backdrop-filter: blur(12px); border-bottom: 1px solid #1a2a10; }
+  nav a { transition: color 0.2s; }
+  nav a:hover { color: #39ff14; }
+
+  /* Hero antennas SVG cockroach emblem */
+  .cockroach-emblem { filter: drop-shadow(0 0 18px #39ff1460); }
+
+  /* Glowing input */
+  .glow-input {
+    background: #0d110a; border: 1px solid #2a3a1a; color: #d4cfc8;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .glow-input:focus {
+    outline: none; border-color: #39ff14;
+    box-shadow: 0 0 0 2px #39ff1430, 0 0 12px #39ff1440;
+  }
+
+  /* Section label */
+  .sec-label {
+    font-family: 'Share Tech Mono', monospace;
+    color: #39ff14; font-size: 0.72rem; letter-spacing: 0.25em;
+  }
+  .sec-title { font-family: 'Bebas Neue', sans-serif; line-height: 1; }
+
+  /* Diagonal divider */
+  .diagonal { clip-path: polygon(0 0, 100% 4%, 100% 100%, 0 96%); }
+
+  /* Amber accent line */
+  .amber-line { background: linear-gradient(90deg, #8B4513, #c9a84c, #8B4513); height: 2px; }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: #080a06; }
+  ::-webkit-scrollbar-thumb { background: #39ff1460; border-radius: 3px; }
+
+  /* Pulse ring on hero emblem */
+  @keyframes pulse-ring {
+    0% { transform: scale(0.92); opacity: 0.5; }
+    50% { transform: scale(1.04); opacity: 0.15; }
+    100% { transform: scale(0.92); opacity: 0.5; }
+  }
+  .pulse-ring { animation: pulse-ring 3s ease-in-out infinite; }
+
+  @keyframes flicker {
+    0%,100% { opacity:1; } 92% { opacity:1; } 93% { opacity:0.7; } 95% { opacity:1; } 97% { opacity:0.8; }
+  }
+  .flicker { animation: flicker 5s infinite; }
+
+  @keyframes scan {
+    0% { transform: translateY(-100%); }
+    100% { transform: translateY(100vh); }
+  }
+  .scanline {
+    position: fixed; top: 0; left: 0; right: 0; height: 2px;
+    background: linear-gradient(transparent, #39ff1420, transparent);
+    animation: scan 6s linear infinite; pointer-events: none; z-index: 1;
+  }
+
+  /* Radio / checkbox custom */
+  .radio-opt input:checked + span { color: #39ff14; border-color: #39ff14; box-shadow: 0 0 8px #39ff1460; }
+  .radio-opt span { border: 1px solid #2a3a1a; transition: all 0.2s; }
+</style>
+</head>
+<body class="relative">
+
+<div class="scanline"></div>
+
+<!-- NAV -->
+<nav class="fixed top-0 left-0 right-0 z-50 py-3 px-6 flex items-center justify-between">
+  <a href="#hero" class="flex items-center gap-3">
+    <!-- Inline SVG logo emblem -->
+    <svg width="38" height="38" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" class="cockroach-emblem">
+      <circle cx="40" cy="40" r="38" fill="#0d110a" stroke="#8B4513" stroke-width="2"/>
+      <circle cx="40" cy="40" r="34" fill="none" stroke="#c9a84c" stroke-width="0.8" stroke-dasharray="3 2"/>
+      <!-- Body -->
+      <ellipse cx="40" cy="44" rx="11" ry="17" fill="#5C2C16"/>
+      <ellipse cx="40" cy="38" rx="9" ry="10" fill="#7a3a1e"/>
+      <!-- Head -->
+      <ellipse cx="40" cy="27" rx="6" ry="5" fill="#5C2C16"/>
+      <!-- Antennae -->
+      <line x1="37" y1="23" x2="27" y2="12" stroke="#c9a84c" stroke-width="1.2" stroke-linecap="round"/>
+      <line x1="43" y1="23" x2="53" y2="12" stroke="#c9a84c" stroke-width="1.2" stroke-linecap="round"/>
+      <!-- Legs -->
+      <line x1="31" y1="40" x2="18" y2="35" stroke="#5C2C16" stroke-width="1.5" stroke-linecap="round"/>
+      <line x1="31" y1="46" x2="17" y2="44" stroke="#5C2C16" stroke-width="1.5" stroke-linecap="round"/>
+      <line x1="31" y1="52" x2="19" y2="54" stroke="#5C2C16" stroke-width="1.5" stroke-linecap="round"/>
+      <line x1="49" y1="40" x2="62" y2="35" stroke="#5C2C16" stroke-width="1.5" stroke-linecap="round"/>
+      <line x1="49" y1="46" x2="63" y2="44" stroke="#5C2C16" stroke-width="1.5" stroke-linecap="round"/>
+      <line x1="49" y1="52" x2="61" y2="54" stroke="#5C2C16" stroke-width="1.5" stroke-linecap="round"/>
+    </svg>
+    <div>
+      <div class="font-bebas text-white text-lg tracking-widest leading-none">AAM COCKROACH</div>
+      <div class="sec-label text-xs">PARTY · ACP</div>
+    </div>
+  </a>
+  <div class="hidden md:flex items-center gap-6 text-sm font-raj font-600 tracking-wider text-gray-400">
+    <a href="#manifesto">MANIFESTO</a>
+    <a href="#campaigns">CAMPAIGNS</a>
+    <a href="#join">JOIN</a>
+    <a href="#join" class="neon-btn px-4 py-1.5 text-sm rounded-sm">JOIN THE SWARM</a>
+  </div>
+  <!-- Mobile menu toggle (CSS-only) -->
+  <label class="md:hidden cursor-pointer text-neon text-2xl select-none" for="mob-toggle">☰</label>
+</nav>
+
+<!-- Mobile menu -->
+<input type="checkbox" id="mob-toggle" class="hidden peer">
+<div class="fixed top-[56px] left-0 right-0 z-40 bg-chitin border-b border-neon/20 hidden peer-checked:flex flex-col items-center gap-4 py-6 text-sm font-raj font-600 tracking-wider text-gray-400">
+  <a href="#manifesto" class="hover:text-neon">MANIFESTO</a>
+  <a href="#campaigns" class="hover:text-neon">CAMPAIGNS</a>
+  <a href="#join" class="hover:text-neon">JOIN</a>
+  <a href="#join" class="neon-btn px-5 py-2 rounded-sm">JOIN THE SWARM</a>
+</div>
+
+<!-- ░░░ HERO ░░░ -->
+<section id="hero" class="relative min-h-screen flex flex-col items-center justify-center text-center px-6 pt-20 overflow-hidden">
+
+  <!-- Background radial glow -->
+  <div class="absolute inset-0 pointer-events-none">
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full" style="background: radial-gradient(circle, #39ff1408 0%, transparent 70%);"></div>
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[900px] rounded-full pulse-ring" style="border: 1px solid #39ff1420;"></div>
+    <!-- Grid lines -->
+    <svg class="absolute inset-0 w-full h-full opacity-[0.04]" xmlns="http://www.w3.org/2000/svg">
+      <defs><pattern id="grid" width="48" height="48" patternUnits="userSpaceOnUse"><path d="M 48 0 L 0 0 0 48" fill="none" stroke="#39ff14" stroke-width="0.5"/></pattern></defs>
+      <rect width="100%" height="100%" fill="url(#grid)"/>
+    </svg>
+  </div>
+
+  <!-- Central Emblem Large -->
+  <div class="relative z-10 mb-8">
+    <svg width="140" height="140" viewBox="0 0 160 160" fill="none" xmlns="http://www.w3.org/2000/svg" class="cockroach-emblem mx-auto">
+      <circle cx="80" cy="80" r="76" fill="#0d110a" stroke="#8B4513" stroke-width="2.5"/>
+      <circle cx="80" cy="80" r="70" fill="none" stroke="#c9a84c" stroke-width="1" stroke-dasharray="4 3"/>
+      <circle cx="80" cy="80" r="64" fill="none" stroke="#5C2C16" stroke-width="0.5"/>
+      <!-- Laurels left -->
+      <g fill="#c9a84c" opacity="0.7">
+        <ellipse cx="24" cy="80" rx="4" ry="7" transform="rotate(-20 24 80)"/>
+        <ellipse cx="28" cy="68" rx="3.5" ry="6.5" transform="rotate(-35 28 68)"/>
+        <ellipse cx="35" cy="58" rx="3" ry="6" transform="rotate(-50 35 58)"/>
+        <ellipse cx="45" cy="50" rx="3" ry="5.5" transform="rotate(-65 45 50)"/>
+        <ellipse cx="57" cy="44" rx="3" ry="5" transform="rotate(-80 57 44)"/>
+      </g>
+      <!-- Laurels right -->
+      <g fill="#c9a84c" opacity="0.7">
+        <ellipse cx="136" cy="80" rx="4" ry="7" transform="rotate(20 136 80)"/>
+        <ellipse cx="132" cy="68" rx="3.5" ry="6.5" transform="rotate(35 132 68)"/>
+        <ellipse cx="125" cy="58" rx="3" ry="6" transform="rotate(50 125 58)"/>
+        <ellipse cx="115" cy="50" rx="3" ry="5.5" transform="rotate(65 115 50)"/>
+        <ellipse cx="103" cy="44" rx="3" ry="5" transform="rotate(80 103 44)"/>
+      </g>
+      <!-- Star -->
+      <polygon points="80,20 82.4,27.3 90,27.3 84,32 86.4,39.3 80,35 73.6,39.3 76,32 70,27.3 77.6,27.3" fill="#c9a84c"/>
+      <!-- Cockroach body -->
+      <ellipse cx="80" cy="96" rx="17" ry="26" fill="#5C2C16"/>
+      <ellipse cx="80" cy="85" rx="14" ry="16" fill="#7a3a1e"/>
+      <ellipse cx="80" cy="67" rx="10" ry="9" fill="#5C2C16"/>
+      <!-- Wing lines -->
+      <line x1="70" y1="88" x2="66" y2="108" stroke="#4a2210" stroke-width="1"/>
+      <line x1="90" y1="88" x2="94" y2="108" stroke="#4a2210" stroke-width="1"/>
+      <line x1="75" y1="82" x2="66" y2="100" stroke="#4a2210" stroke-width="0.8"/>
+      <!-- Antennae -->
+      <path d="M75 60 Q60 44 45 30" stroke="#c9a84c" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+      <path d="M85 60 Q100 44 115 30" stroke="#c9a84c" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+      <circle cx="45" cy="30" r="2" fill="#39ff14"/>
+      <circle cx="115" cy="30" r="2" fill="#39ff14"/>
+      <!-- Legs -->
+      <g stroke="#5C2C16" stroke-width="2" stroke-linecap="round">
+        <line x1="65" y1="82" x2="42" y2="72"/><line x1="65" y1="90" x2="40" y2="88"/><line x1="65" y1="98" x2="43" y2="106"/>
+        <line x1="95" y1="82" x2="118" y2="72"/><line x1="95" y1="90" x2="120" y2="88"/><line x1="95" y1="98" x2="117" y2="106"/>
+      </g>
+      <!-- Parliament dome bottom -->
+      <g opacity="0.6">
+        <rect x="60" y="130" width="40" height="4" rx="1" fill="#c9a84c"/>
+        <path d="M65 130 Q80 118 95 130" fill="#c9a84c"/>
+        <rect x="78" y="112" width="4" height="8" fill="#c9a84c"/>
+        <polygon points="80,108 82,113 78,113" fill="#c9a84c"/>
+      </g>
+      <!-- Text arc at bottom -->
+      <text font-family="Rajdhani,sans-serif" font-size="7" font-weight="700" fill="#c9a84c" opacity="0.8">
+        <textPath href="#arc" startOffset="15%">सशक्त &nbsp;|&nbsp; समानता &nbsp;|&nbsp; स्वच्छ शासन</textPath>
+      </text>
+      <defs>
+        <path id="arc" d="M 18 80 A 62 62 0 0 0 142 80"/>
+      </defs>
+    </svg>
+  </div>
+
+  <div class="relative z-10 max-w-4xl mx-auto">
+    <div class="sec-label mb-4 flicker">★ AAM COCKROACH PARTY (ACP) ★</div>
+    <h1 class="sec-title text-white text-5xl md:text-7xl lg:text-8xl mb-2 leading-none">
+      WE ARE NOT HERE<br>
+      <span style="color:#39ff14">TO PROTECT</span><br>
+      CORRUPT SYSTEMS.
+    </h1>
+    <div class="amber-line my-5 max-w-sm mx-auto"></div>
+    <p class="text-gray-300 text-lg md:text-xl font-raj max-w-2xl mx-auto mb-3 leading-relaxed">
+      We are here to rebuild the nation with <span class="text-amber-400 font-semibold">honesty</span>, <span class="text-amber-400 font-semibold">discipline</span>, <span class="text-amber-400 font-semibold">cleanliness</span>, and <span class="text-amber-400 font-semibold">justice</span>.
+    </p>
+    <div class="font-bebas text-3xl md:text-5xl tracking-widest mb-8" style="color:#c9a84c; text-shadow: 0 0 20px #c9a84c60;">
+      2035: A NEW DELHI BEGINS.
+    </div>
+    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+      <a href="#join" class="neon-btn px-8 py-3.5 text-base rounded-sm uppercase tracking-widest">🪲 Join the Movement</a>
+      <a href="#join" class="ghost-btn px-8 py-3.5 text-base rounded-sm uppercase tracking-widest">⚡ Support Resilience</a>
+    </div>
+    <div class="mt-8 font-mono text-xs text-gray-600 tracking-widest">
+      "HAR GHAR KI AWAAZ" &nbsp;·&nbsp; "JANTA KI TAQAT, ACP KE SAATH" &nbsp;·&nbsp; "SURVIVAL. STRENGTH. SERVICE."
+    </div>
+  </div>
+
+  <!-- Scroll indicator -->
+  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 opacity-40">
+    <div class="w-px h-10 bg-gradient-to-b from-transparent to-neon"></div>
+    <span class="font-mono text-xs text-neon tracking-widest">SCROLL</span>
+  </div>
+</section>
+
+<!-- ░░░ MANIFESTO / PILLARS ░░░ -->
+<section id="manifesto" class="relative py-24 px-6 diagonal" style="background: #0a0e08;">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center mb-14">
+      <div class="sec-label mb-3">// MANIFESTO · PILLARS OF POWER //</div>
+      <h2 class="sec-title text-white text-5xl md:text-7xl">OUR CORE <span style="color:#39ff14">VALUES</span></h2>
+      <div class="amber-line max-w-xs mx-auto mt-4"></div>
+      <p class="text-gray-400 mt-4 max-w-xl mx-auto font-raj text-base">
+        Like the cockroach that outlasted every extinction — our principles survive every storm, every era, every corrupt regime.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+
+      <div class="chitin-card rounded-sm p-6 flex flex-col gap-3">
+        <div class="text-3xl">🧹</div>
+        <h3 class="font-bebas text-xl tracking-wider" style="color:#39ff14">Clean Governance</h3>
+        <p class="text-gray-400 text-sm font-raj">Zero tolerance for systemic rot. Transparent digital systems that citizens can audit, challenge, and trust.</p>
+        <div class="mt-auto pt-3 border-t border-neon/10 font-mono text-xs text-neon/50">PILLAR_01</div>
+      </div>
+
+      <div class="chitin-card rounded-sm p-6 flex flex-col gap-3">
+        <div class="text-3xl">🤝</div>
+        <h3 class="font-bebas text-xl tracking-wider" style="color:#39ff14">Honest Leadership</h3>
+        <p class="text-gray-400 text-sm font-raj">Leaders who serve, not feed. No dynasties. No backdoor deals. Only accountable, ground-up representation.</p>
+        <div class="mt-auto pt-3 border-t border-neon/10 font-mono text-xs text-neon/50">PILLAR_02</div>
+      </div>
+
+      <div class="chitin-card rounded-sm p-6 flex flex-col gap-3">
+        <div class="text-3xl">🛡️</div>
+        <h3 class="font-bebas text-xl tracking-wider" style="color:#39ff14">Public Safety</h3>
+        <p class="text-gray-400 text-sm font-raj">Justice that reaches every street, every lane. Law that protects the common citizen — not just the powerful.</p>
+        <div class="mt-auto pt-3 border-t border-neon/10 font-mono text-xs text-neon/50">PILLAR_03</div>
+      </div>
+
+      <div class="chitin-card rounded-sm p-6 flex flex-col gap-3">
+        <div class="text-3xl">🌿</div>
+        <h3 class="font-bebas text-xl tracking-wider" style="color:#39ff14">Environmental Protection</h3>
+        <p class="text-gray-400 text-sm font-raj">The cockroach survived because it adapted. We fight for a nation that respects its rivers, air, and soil.</p>
+        <div class="mt-auto pt-3 border-t border-neon/10 font-mono text-xs text-neon/50">PILLAR_04</div>
+      </div>
+
+      <div class="chitin-card rounded-sm p-6 flex flex-col gap-3">
+        <div class="text-3xl">⚖️</div>
+        <h3 class="font-bebas text-xl tracking-wider" style="color:#39ff14">Accountability</h3>
+        <p class="text-gray-400 text-sm font-raj">Every rupee tracked. Every promise audited. Every official answerable — publicly, digitally, irrevocably.</p>
+        <div class="mt-auto pt-3 border-t border-neon/10 font-mono text-xs text-neon/50">PILLAR_05</div>
+      </div>
+
+      <div class="chitin-card rounded-sm p-6 flex flex-col gap-3">
+        <div class="text-3xl">🏋️</div>
+        <h3 class="font-bebas text-xl tracking-wider" style="color:#39ff14">National Discipline</h3>
+        <p class="text-gray-400 text-sm font-raj">A nation built on work ethic, civic duty, and collective responsibility. Discipline is our survival instinct.</p>
+        <div class="mt-auto pt-3 border-t border-neon/10 font-mono text-xs text-neon/50">PILLAR_06</div>
+      </div>
+
+      <div class="chitin-card rounded-sm p-6 flex flex-col gap-3 sm:col-span-2 lg:col-span-1">
+        <div class="text-3xl">📋</div>
+        <h3 class="font-bebas text-xl tracking-wider" style="color:#39ff14">Transparent Administration</h3>
+        <p class="text-gray-400 text-sm font-raj">Open data. Open records. Open government. Citizens have the right to see — and the power to question — everything.</p>
+        <div class="mt-auto pt-3 border-t border-neon/10 font-mono text-xs text-neon/50">PILLAR_07</div>
+      </div>
+
+      <!-- Vision card spanning -->
+      <div class="chitin-card rounded-sm p-6 flex flex-col gap-3" style="background: linear-gradient(135deg, #1a2a0e 0%, #0f1a08 100%); border-color: #39ff1440;">
+        <div class="font-bebas text-4xl" style="color:#39ff14">ACP</div>
+        <h3 class="font-bebas text-xl tracking-wider text-white">Our Vision</h3>
+        <p class="text-gray-300 text-sm font-raj leading-relaxed">The cockroach survives every challenge — nuclear blasts, floods, the collapse of empires. Every citizen deserves that same unbreakable power: to survive, grow, and lead with dignity.</p>
+        <div class="mt-auto font-raj font-700 text-sm" style="color:#c9a84c">"STRONG IN EVERY SITUATION"</div>
+      </div>
+
+    </div>
+
+    <!-- Symbolism strip -->
+    <div class="mt-12 p-6 rounded-sm" style="background: #0d1a09; border: 1px solid #39ff1425;">
+      <div class="text-center mb-4 font-bebas text-2xl tracking-wider text-amber-400">THE COCKROACH REPRESENTS</div>
+      <div class="flex flex-wrap justify-center gap-4 text-sm font-raj font-600">
+        <span class="px-4 py-2 rounded-full" style="border:1px solid #39ff1440; color:#39ff14;">✓ Survival Against All Odds</span>
+        <span class="px-4 py-2 rounded-full" style="border:1px solid #39ff1440; color:#39ff14;">✓ Fearlessness</span>
+        <span class="px-4 py-2 rounded-full" style="border:1px solid #39ff1440; color:#39ff14;">✓ Adaptability</span>
+        <span class="px-4 py-2 rounded-full" style="border:1px solid #39ff1440; color:#39ff14;">✓ Unity in Difficult Times</span>
+        <span class="px-4 py-2 rounded-full" style="border:1px solid #39ff1440; color:#39ff14;">✓ Never Giving Up</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ░░░ CAMPAIGNS ░░░ -->
+<section id="campaigns" class="py-24 px-6" style="background: #080a06;">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center mb-14">
+      <div class="sec-label mb-3">// ACTIVE CAMPAIGNS //</div>
+      <h2 class="sec-title text-white text-5xl md:text-7xl">FIELD <span style="color:#39ff14">OPERATIONS</span></h2>
+      <div class="amber-line max-w-xs mx-auto mt-4"></div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+      <!-- Campaign 1 -->
+      <div class="camp-card rounded-sm p-0 overflow-hidden">
+        <div class="h-2" style="background: linear-gradient(90deg, #39ff14, #00e5a0);"></div>
+        <div class="p-7">
+          <div class="flex items-center justify-between mb-4">
+            <div class="font-mono text-xs text-neon/60 tracking-widest">CAMPAIGN_01 · ACTIVE</div>
+            <div class="w-2 h-2 rounded-full bg-neon animate-pulse"></div>
+          </div>
+          <h3 class="font-bebas text-3xl text-white tracking-wider mb-3">SURVIVAL INSTINCT</h3>
+          <p class="text-gray-400 text-sm font-raj mb-5 leading-relaxed">Mobilizing grassroots networks in 50 districts. Training ordinary citizens — farmers, workers, students — to become frontline political actors. The swarm begins at ground level.</p>
+          <div class="space-y-2 mb-6">
+            <div class="flex justify-between text-xs font-mono text-gray-500">
+              <span>MOBILIZATION</span><span style="color:#39ff14">73%</span>
+            </div>
+            <div class="h-1 bg-gray-800 rounded-full overflow-hidden">
+              <div class="h-full rounded-full" style="width:73%; background: linear-gradient(90deg,#39ff14,#00e5a0);"></div>
+            </div>
+          </div>
+          <a href="#join" class="ghost-btn px-5 py-2 text-sm rounded-sm inline-block">→ GET INVOLVED</a>
+        </div>
+      </div>
+
+      <!-- Campaign 2 -->
+      <div class="camp-card rounded-sm p-0 overflow-hidden">
+        <div class="h-2" style="background: linear-gradient(90deg, #c9a84c, #8B4513);"></div>
+        <div class="p-7">
+          <div class="flex items-center justify-between mb-4">
+            <div class="font-mono text-xs text-amber-500/60 tracking-widest">CAMPAIGN_02 · ACTIVE</div>
+            <div class="w-2 h-2 rounded-full bg-amber-400 animate-pulse"></div>
+          </div>
+          <h3 class="font-bebas text-3xl text-white tracking-wider mb-3">DE-CLUTTERING THE SYSTEM</h3>
+          <p class="text-gray-400 text-sm font-raj mb-5 leading-relaxed">Exposing redundant bureaucratic layers that drain public funds and block citizen services. Filing RTIs. Demanding digital ledgers. Cleaning the rot from inside.</p>
+          <div class="space-y-2 mb-6">
+            <div class="flex justify-between text-xs font-mono text-gray-500">
+              <span>RTI FILED</span><span style="color:#c9a84c">2,400+</span>
+            </div>
+            <div class="h-1 bg-gray-800 rounded-full overflow-hidden">
+              <div class="h-full rounded-full" style="width:58%; background: linear-gradient(90deg,#c9a84c,#8B4513);"></div>
+            </div>
+          </div>
+          <a href="#join" class="inline-block px-5 py-2 text-sm rounded-sm font-raj font-700 tracking-wider" style="border:1px solid #c9a84c; color:#c9a84c; transition:all 0.2s;" onmouseover="this.style.background='#c9a84c20'" onmouseout="this.style.background='transparent'">→ FILE WITH US</a>
+        </div>
+      </div>
+
+      <!-- Campaign 3 -->
+      <div class="camp-card rounded-sm p-0 overflow-hidden">
+        <div class="h-2" style="background: linear-gradient(90deg, #39ff14, #7fff00);"></div>
+        <div class="p-7">
+          <div class="flex items-center justify-between mb-4">
+            <div class="font-mono text-xs text-neon/60 tracking-widest">CAMPAIGN_03 · LAUNCHING</div>
+            <div class="w-2 h-2 rounded-full bg-neon" style="box-shadow:0 0 8px #39ff14;"></div>
+          </div>
+          <h3 class="font-bebas text-3xl text-white tracking-wider mb-3">GROUND SE GOVERNMENT TAK</h3>
+          <p class="text-gray-400 text-sm font-raj mb-5 leading-relaxed">Youth leadership pipeline from panchayat level to parliament. Skill training. Debate camps. Political literacy drives. We build tomorrow's leaders today — from the ground up.</p>
+          <div class="space-y-2 mb-6">
+            <div class="flex justify-between text-xs font-mono text-gray-500">
+              <span>VOLUNTEERS</span><span style="color:#39ff14">1,200+</span>
+            </div>
+            <div class="h-1 bg-gray-800 rounded-full overflow-hidden">
+              <div class="h-full rounded-full" style="width:35%; background: linear-gradient(90deg,#39ff14,#7fff00);"></div>
+            </div>
+          </div>
+          <a href="#join" class="ghost-btn px-5 py-2 text-sm rounded-sm inline-block">→ VOLUNTEER NOW</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ░░░ JOIN THE SWARM ░░░ -->
+<section id="join" class="py-24 px-6 relative" style="background: #0a0e08;">
+  <!-- Glow backdrop -->
+  <div class="absolute inset-0 pointer-events-none flex items-center justify-center">
+    <div class="w-96 h-96 rounded-full" style="background: radial-gradient(circle, #39ff1406 0%, transparent 70%);"></div>
+  </div>
+
+  <div class="max-w-2xl mx-auto relative z-10">
+    <div class="text-center mb-10">
+      <div class="sec-label mb-3">// ENLIST //</div>
+      <h2 class="sec-title text-white text-5xl md:text-6xl">JOIN THE <span style="color:#39ff14">SWARM</span></h2>
+      <div class="amber-line max-w-xs mx-auto mt-4 mb-5"></div>
+      <p class="text-gray-400 font-raj">One cockroach survives. A swarm changes everything. Become part of India's most resilient political movement.</p>
+      <a href="mailto:AamCockroachparty@proton.me" class="inline-block mt-3 font-mono text-sm" style="color:#39ff14;">AamCockroachparty@proton.me</a>
+    </div>
+
+    <div class="chitin-card rounded-sm p-8 md:p-10">
+      <div class="space-y-5">
+        <div>
+          <label class="block font-mono text-xs text-neon/70 tracking-widest mb-1.5">YOUR NAME</label>
+          <input id="acpName" type="text" placeholder="Full Name" class="glow-input w-full px-4 py-3 rounded-sm text-sm font-raj">
+        </div>
+        <div>
+          <label class="block font-mono text-xs text-neon/70 tracking-widest mb-1.5">EMAIL ADDRESS</label>
+          <input id="acpEmail" type="email" placeholder="your@email.com" class="glow-input w-full px-4 py-3 rounded-sm text-sm font-raj">
+        </div>
+        <div>
+          <label class="block font-mono text-xs text-neon/70 tracking-widest mb-2">I WANT TO</label>
+          <div class="grid grid-cols-2 gap-3">
+            <label class="radio-opt cursor-pointer">
+              <input type="radio" name="role" value="Volunteer" class="sr-only" checked>
+              <span class="block text-center py-3 rounded-sm text-sm font-raj font-600 text-gray-300">🪲 Volunteer</span>
+            </label>
+            <label class="radio-opt cursor-pointer">
+              <input type="radio" name="role" value="Donate" class="sr-only">
+              <span class="block text-center py-3 rounded-sm text-sm font-raj font-600 text-gray-300">💚 Donate</span>
+            </label>
+            <label class="radio-opt cursor-pointer">
+              <input type="radio" name="role" value="Spread the Word" class="sr-only">
+              <span class="block text-center py-3 rounded-sm text-sm font-raj font-600 text-gray-300">📢 Spread the Word</span>
+            </label>
+            <label class="radio-opt cursor-pointer">
+              <input type="radio" name="role" value="Run for Office" class="sr-only">
+              <span class="block text-center py-3 rounded-sm text-sm font-raj font-600 text-gray-300">🏛️ Run for Office</span>
+            </label>
+          </div>
+        </div>
+        <div>
+          <label class="block font-mono text-xs text-neon/70 tracking-widest mb-1.5">YOUR MESSAGE <span class="text-gray-600">(optional)</span></label>
+          <textarea id="acpMsg" rows="3" placeholder="Why do you want to join the movement?" class="glow-input w-full px-4 py-3 rounded-sm text-sm font-raj resize-none"></textarea>
+        </div>
+        <button id="enlistBtn" onclick="sendToMail(this)" class="neon-btn w-full py-4 text-base rounded-sm uppercase tracking-widest transition-all">
+          🪲 ENLIST NOW — JOIN THE SWARM
+        </button>
+        <p class="text-center text-xs text-gray-600 font-mono">Or reach us directly at <a href="mailto:AamCockroachparty@proton.me" style="color:#39ff1470;">AamCockroachparty@proton.me</a></p>
+      </div>
+    </div>
+
+    <!-- Party slogans below form -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mt-8 text-center">
+      <div class="p-3 rounded-sm" style="border:1px solid #1a2a10;">
+        <div class="text-xs font-mono" style="color:#c9a84c;">"HAR GHAR<br>KI AWAAZ"</div>
+      </div>
+      <div class="p-3 rounded-sm" style="border:1px solid #1a2a10;">
+        <div class="text-xs font-mono" style="color:#c9a84c;">"JANTA KI TAQAT<br>ACP KE SAATH"</div>
+      </div>
+      <div class="p-3 rounded-sm" style="border:1px solid #1a2a10;">
+        <div class="text-xs font-mono" style="color:#c9a84c;">"SURVIVAL.<br>STRENGTH.<br>SERVICE."</div>
+      </div>
+      <div class="p-3 rounded-sm" style="border:1px solid #1a2a10;">
+        <div class="text-xs font-mono" style="color:#c9a84c;">"GROUND SE<br>GOVERNMENT TAK"</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ░░░ FOOTER ░░░ -->
+<footer style="background:#050704; border-top:1px solid #1a2a10;">
+  <div class="max-w-6xl mx-auto px-6 py-14">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-10 mb-10">
+      <!-- Brand -->
+      <div>
+        <div class="font-bebas text-2xl text-white tracking-widest mb-1">AAM COCKROACH PARTY</div>
+        <div class="sec-label mb-4">ACP · AAMCOCKROACHPARTY.ORG</div>
+        <p class="text-gray-600 text-sm font-raj leading-relaxed">Born in resilience. Built for the common citizen. The cockroach outlasted every empire — and so shall justice.</p>
+        <div class="mt-4 font-bebas text-lg tracking-widest" style="color:#39ff14;">सशक्त | समानता | स्वच्छ शासन</div>
+      </div>
+      <!-- Quick Links -->
+      <div>
+        <div class="font-mono text-xs text-gray-600 tracking-widest mb-4">NAVIGATION</div>
+        <div class="space-y-2 font-raj text-sm">
+          <a href="#hero" class="block text-gray-400 hover:text-neon transition-colors">→ Home</a>
+          <a href="#manifesto" class="block text-gray-400 hover:text-neon transition-colors">→ Manifesto & Pillars</a>
+          <a href="#campaigns" class="block text-gray-400 hover:text-neon transition-colors">→ Active Campaigns</a>
+          <a href="#join" class="block text-gray-400 hover:text-neon transition-colors">→ Join the Swarm</a>
+          <a href="mailto:AamCockroachparty@proton.me" class="block hover:text-neon transition-colors" style="color:#39ff1480;">→ AamCockroachparty@proton.me</a>
+        </div>
+      </div>
+      <!-- Slogans -->
+      <div>
+        <div class="font-mono text-xs text-gray-600 tracking-widest mb-4">OUR PRINCIPLES</div>
+        <div class="space-y-3">
+          <div class="p-3 rounded-sm" style="border-left:3px solid #39ff14; background:#0d110a;">
+            <div class="font-bebas text-lg text-white tracking-wider">TRUTH OVER POWER</div>
+          </div>
+          <div class="p-3 rounded-sm" style="border-left:3px solid #c9a84c; background:#0d110a;">
+            <div class="font-bebas text-lg text-white tracking-wider">JUSTICE. DISCIPLINE. DEVELOPMENT.</div>
+          </div>
+          <div class="p-3 rounded-sm" style="border-left:3px solid #8B4513; background:#0d110a;">
+            <div class="font-bebas text-lg text-white tracking-wider">JANTA KI TAQAT, ACP KE SAATH</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="amber-line mb-6"></div>
+
+    <div class="flex flex-col md:flex-row items-center justify-between gap-4 text-xs font-mono text-gray-600">
+      <div>© 2025 Aam Cockroach Party (ACP) · All Rights Reserved · AamCockroachParty.org</div>
+      <div class="flex gap-6">
+        <a href="contact.html" class="hover:text-neon transition-colors">Contact</a>
+        <a href="privacy.html" class="hover:text-neon transition-colors">Privacy Policy</a>
+        <a href="faq.html" class="hover:text-neon transition-colors">FAQ</a>
+      </div>
+      <div style="color:#39ff1460;">Built to Survive. Built to Serve. 🪲</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // ── mailto submission ──────────────────────────────────────────────
+  function sendToMail(btn) {
+    const name  = document.getElementById('acpName').value.trim();
+    const email = document.getElementById('acpEmail').value.trim();
+    const role  = (document.querySelector('input[name="role"]:checked') || {}).value || 'Not specified';
+    const msg   = document.getElementById('acpMsg').value.trim();
+
+    if (!name || !email) {
+      // Shake the empty field(s) visually
+      ['acpName','acpEmail'].forEach(id => {
+        const el = document.getElementById(id);
+        if (!el.value.trim()) {
+          el.style.borderColor = '#ff4444';
+          el.style.boxShadow = '0 0 10px #ff444460';
+          setTimeout(() => { el.style.borderColor = ''; el.style.boxShadow = ''; }, 2000);
+        }
+      });
+      return;
+    }
+
+    const subject = encodeURIComponent(`ACP Enlistment — ${role} — ${name}`);
+    const body = encodeURIComponent(
+`New Swarm Enlistment
+====================
+Name    : ${name}
+Email   : ${email}
+Role    : ${role}
+Message : ${msg || '(none provided)'}
+
+— Submitted via AamCockroachParty.org`
+    );
+
+    window.location.href = `mailto:AamCockroachparty@proton.me?subject=${subject}&body=${body}`;
+
+    // Visual confirmation
+    btn.textContent = '✅ ENLISTED — WELCOME TO THE SWARM';
+    btn.style.background = '#1a4a10';
+    btn.style.color = '#39ff14';
+    btn.style.border = '1px solid #39ff14';
+    btn.style.boxShadow = '0 0 20px #39ff1460';
+  }
+
+  // ── Radio button highlight ─────────────────────────────────────────
+  function highlightRadio(checked) {
+    document.querySelectorAll('.radio-opt span').forEach(s => {
+      s.style.color = ''; s.style.borderColor = ''; s.style.boxShadow = '';
+    });
+    if (checked) {
+      const span = checked.nextElementSibling;
+      span.style.color = '#39ff14';
+      span.style.borderColor = '#39ff14';
+      span.style.boxShadow = '0 0 10px #39ff1450';
+    }
+  }
+  document.querySelectorAll('.radio-opt input').forEach(r =>
+    r.addEventListener('change', () => highlightRadio(r))
+  );
+  highlightRadio(document.querySelector('.radio-opt input[checked]'));
+
+  // ── Mobile menu close on link click ───────────────────────────────
+  document.querySelectorAll('nav a, .peer-checked\\:flex a').forEach(link => {
+    link.addEventListener('click', () => {
+      document.getElementById('mob-toggle').checked = false;
+    });
+  });
+</script>
+</body>
+</html>

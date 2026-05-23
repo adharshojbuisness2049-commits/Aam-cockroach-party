@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FAQ — Aam Cockroach Party (ACP)</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rajdhani:wght@400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<script>
+  tailwind.config = {
+    theme: { extend: {
+      colors: { obsidian:'#080a06', chitin:'#0d110a', bark:'#5C2C16', amber:'#8B4513', gold:'#c9a84c', neon:'#39ff14' },
+      fontFamily: { bebas:['Bebas Neue','sans-serif'], raj:['Rajdhani','sans-serif'], mono:['Share Tech Mono','monospace'] }
+    }}
+  }
+</script>
+<style>
+  body { background:#080a06; color:#d4cfc8; font-family:'Rajdhani',sans-serif; }
+  body::before { content:''; position:fixed; inset:0; background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E"); pointer-events:none; z-index:0; opacity:0.35; }
+  nav { background:#080a06ee; backdrop-filter:blur(12px); border-bottom:1px solid #1a2a10; }
+  nav a:hover { color:#39ff14; }
+  .amber-line { background:linear-gradient(90deg,#8B4513,#c9a84c,#8B4513); height:2px; }
+  .sec-label { font-family:'Share Tech Mono',monospace; color:#39ff14; font-size:0.72rem; letter-spacing:0.25em; }
+  .sec-title { font-family:'Bebas Neue',sans-serif; line-height:1; }
+  a.neon-link { color:#39ff14; text-decoration:underline; text-underline-offset:3px; }
+  ::-webkit-scrollbar { width:6px; } ::-webkit-scrollbar-track { background:#080a06; } ::-webkit-scrollbar-thumb { background:#39ff1460; border-radius:3px; }
+  .scanline { position:fixed; top:0; left:0; right:0; height:2px; background:linear-gradient(transparent,#39ff1420,transparent); animation:scan 6s linear infinite; pointer-events:none; z-index:1; }
+  @keyframes scan { 0%{transform:translateY(-100%)} 100%{transform:translateY(100vh)} }
+
+  /* Accordion */
+  .faq-item { border:1px solid #1a2a10; border-radius:2px; overflow:hidden; margin-bottom:0.75rem; transition:border-color 0.2s; }
+  .faq-item:has(.faq-toggle:checked) { border-color:#39ff1440; box-shadow:0 0 20px #39ff1410; }
+  .faq-label { display:flex; align-items:center; justify-content:space-between; padding:1.1rem 1.4rem; cursor:pointer; background:#0d110a; user-select:none; gap:1rem; }
+  .faq-label:hover { background:#111a0e; }
+  .faq-label .q { font-family:'Bebas Neue',sans-serif; font-size:1.1rem; letter-spacing:0.06em; color:#fff; }
+  .faq-toggle { display:none; }
+  .faq-arrow { color:#39ff14; font-size:1rem; transition:transform 0.3s; flex-shrink:0; font-family:'Share Tech Mono',monospace; }
+  .faq-toggle:checked ~ .faq-body { max-height:600px; padding:1rem 1.4rem 1.4rem; }
+  .faq-toggle:checked + label .faq-arrow { transform:rotate(45deg); }
+  .faq-toggle:checked + label { background:#0f1a0c; }
+  .faq-body { max-height:0; overflow:hidden; transition:max-height 0.35s ease, padding 0.3s; padding:0 1.4rem; background:#0a1208; color:#a0a89a; font-size:0.95rem; line-height:1.75; }
+  .faq-body strong { color:#d4cfc8; }
+  .faq-body a { color:#39ff14; text-decoration:underline; text-underline-offset:3px; }
+  .faq-body ul { list-style:none; padding:0; margin-top:0.5rem; }
+  .faq-body ul li::before { content:'→ '; color:#39ff14; }
+  .faq-body ul li { margin-bottom:0.25rem; }
+
+  /* Category pill */
+  .cat-pill { display:inline-block; font-family:'Share Tech Mono',monospace; font-size:0.65rem; letter-spacing:0.2em; padding:0.2rem 0.6rem; border-radius:2px; margin-bottom:1.5rem; margin-top:0.5rem; }
+</style>
+</head>
+<body>
+<div class="scanline"></div>
+
+<!-- NAV -->
+<nav class="fixed top-0 left-0 right-0 z-50 py-3 px-6 flex items-center justify-between">
+  <a href="index.html" class="flex items-center gap-3">
+    <svg width="36" height="36" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" style="filter:drop-shadow(0 0 10px #39ff1460)">
+      <circle cx="40" cy="40" r="38" fill="#0d110a" stroke="#8B4513" stroke-width="2"/>
+      <ellipse cx="40" cy="44" rx="11" ry="17" fill="#5C2C16"/>
+      <ellipse cx="40" cy="38" rx="9" ry="10" fill="#7a3a1e"/>
+      <ellipse cx="40" cy="27" rx="6" ry="5" fill="#5C2C16"/>
+      <line x1="37" y1="23" x2="27" y2="12" stroke="#c9a84c" stroke-width="1.2" stroke-linecap="round"/>
+      <line x1="43" y1="23" x2="53" y2="12" stroke="#c9a84c" stroke-width="1.2" stroke-linecap="round"/>
+    </svg>
+    <div>
+      <div class="font-bebas text-white text-lg tracking-widest leading-none">AAM COCKROACH</div>
+      <div class="sec-label text-xs">PARTY · ACP</div>
+    </div>
+  </a>
+  <div class="flex items-center gap-6 text-sm font-raj font-semibold tracking-wider text-gray-400">
+    <a href="index.html#manifesto" class="hidden md:block transition-colors">MANIFESTO</a>
+    <a href="index.html#campaigns" class="hidden md:block transition-colors">CAMPAIGNS</a>
+    <a href="index.html#join" class="hidden md:block transition-colors">JOIN</a>
+    <a href="index.html#join" class="px-4 py-1.5 text-sm rounded-sm font-raj font-700 tracking-widest uppercase" style="background:#39ff14;color:#080a06;box-shadow:0 0 12px #39ff1480;">JOIN THE SWARM</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="pt-32 pb-16 px-6 relative overflow-hidden">
+  <div class="absolute inset-0 pointer-events-none">
+    <svg class="absolute inset-0 w-full h-full opacity-[0.04]" xmlns="http://www.w3.org/2000/svg">
+      <defs><pattern id="grid" width="48" height="48" patternUnits="userSpaceOnUse"><path d="M 48 0 L 0 0 0 48" fill="none" stroke="#39ff14" stroke-width="0.5"/></pattern></defs>
+      <rect width="100%" height="100%" fill="url(#grid)"/>
+    </svg>
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full" style="background:radial-gradient(circle,#39ff1406 0%,transparent 70%);"></div>
+  </div>
+  <div class="max-w-4xl mx-auto relative z-10 text-center">
+    <div class="sec-label mb-3">// ANSWERS · CLARITY · TRUTH //</div>
+    <h1 class="sec-title text-white text-6xl md:text-8xl mb-4">FREQUENTLY ASKED <span style="color:#39ff14">QUESTIONS</span></h1>
+    <div class="amber-line max-w-xs mx-auto mb-5"></div>
+    <p class="text-gray-400 font-raj text-base max-w-xl mx-auto">Everything you need to know about ACP — our movement, our values, and how to join the swarm.</p>
+  </div>
+</section>
+
+<!-- FAQ CONTENT -->
+<main class="max-w-4xl mx-auto px-6 pb-24 relative z-10">
+
+  <!-- ABOUT THE PARTY -->
+  <div class="cat-pill" style="background:#39ff1415; color:#39ff14; border:1px solid #39ff1430;">ABOUT THE PARTY</div>
+
+  <div class="faq-item">
+    <input type="radio" name="faq" id="f1" class="faq-toggle">
+    <label class="faq-label" for="f1">
+      <span class="q">What is the Aam Cockroach Party (ACP)?</span>
+      <span class="faq-arrow">+</span>
+    </label>
+    <div class="faq-body">
+      The <strong>Aam Cockroach Party (ACP)</strong> is a grassroots political movement built on the principles of honesty, discipline, cleanliness, and justice. Just as the cockroach survives every adversity — nuclear blasts, floods, the collapse of empires — ACP believes every citizen of India deserves that same unbreakable resilience: the power to survive, grow, and lead with dignity. We are not here to protect corrupt systems. We are here to rebuild the nation from the ground up.
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <input type="radio" name="faq" id="f2" class="faq-toggle">
+    <label class="faq-label" for="f2">
+      <span class="q">Why a cockroach as a symbol?</span>
+      <span class="faq-arrow">+</span>
+    </label>
+    <div class="faq-body">
+      The cockroach is nature's ultimate survivor. It represents:
+      <ul>
+        <li>Survival against all odds</li>
+        <li>Fearlessness in the face of power</li>
+        <li>Adaptability to any environment</li>
+        <li>Unity — a swarm is unstoppable</li>
+        <li>Never giving up, no matter what</li>
+      </ul>
+      In a political landscape full of hollow symbols, we chose an honest one. The common people of India are like the cockroach — underestimated, resilient, and ultimately impossible to exterminate.
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <input type="radio" name="faq" id="f3" class="faq-toggle">
+    <label class="faq-label" for="f3">
+      <span class="q">What does "2035: A New Delhi Begins" mean?</span>
+      <span class="faq-arrow">+</span>
+    </label>
+    <div class="faq-body">
+      It is our long-term vision horizon. ACP recognises that real change — structural, cultural, and administrative — takes time. 2035 is not just a year; it is our commitment to a sustained, disciplined movement that aims to have transformed the political landscape of Delhi and beyond within the next decade. Every campaign, every volunteer, every RTI filed today is a brick in that future.
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <input type="radio" name="faq" id="f4" class="faq-toggle">
+    <label class="faq-label" for="f4">
+      <span class="q">Is ACP a registered political party?</span>
+      <span class="faq-arrow">+</span>
+    </label>
+    <div class="faq-body">
+      ACP is currently operating as a grassroots political movement building its base, network, and manifesto. The formal registration process with the Election Commission of India is part of our roadmap. For the latest status updates, contact us at <a href="mailto:AamCockroachparty@proton.me">AamCockroachparty@proton.me</a>.
+    </div>
+  </div>
+
+  <!-- JOINING -->
+  <div class="cat-pill mt-8" style="background:#c9a84c15; color:#c9a84c; border:1px solid #c9a84c30;">JOINING THE MOVEMENT</div>
+
+  <div class="faq-item">
+    <input type="radio" name="faq" id="f5" class="faq-toggle">
+    <label class="faq-label" for="f5">
+      <span class="q">How do I join the Aam Cockroach Party?</span>
+      <span class="faq-arrow">+</span>
+    </label>
+    <div class="faq-body">
+      Joining is simple. Head to the <a href="index.html#join">Join the Swarm</a> section on our homepage, fill in your name, email, and choose your preferred role — Volunteer, Donate, Spread the Word, or Run for Office. Your submission goes directly to our team. You can also email us directly at <a href="mailto:AamCockroachparty@proton.me">AamCockroachparty@proton.me</a>.
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <input type="radio" name="faq" id="f6" class="faq-toggle">
+    <label class="faq-label" for="f6">
+      <span class="q">What does volunteering with ACP involve?</span>
+      <span class="faq-arrow">+</span>
+    </label>
+    <div class="faq-body">
+      Volunteers are the backbone of the swarm. Depending on your skills and availability, you can:
+      <ul>
+        <li>Participate in field mobilisation across districts</li>
+        <li>Assist with RTI filings and public accountability campaigns</li>
+        <li>Organise community awareness events</li>
+        <li>Help with digital outreach and social media</li>
+        <li>Join youth leadership training programmes</li>
+      </ul>
+      We match your strengths to where the movement needs them most.
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <input type="radio" name="faq" id="f7" class="faq-toggle">
+    <label class="faq-label" for="f7">
+      <span class="q">Can I run for office under the ACP banner?</span>
+      <span class="faq-arrow">+</span>
+    </label>
+    <div class="faq-body">
+      Yes. ACP is actively building a pipeline of honest, disciplined candidates through our <strong>Ground Se Government Tak</strong> campaign. If you want to represent your community — at panchayat, municipal, state, or national level — we want to hear from you. Select "Run for Office" in the Join form or email us with your background and vision.
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <input type="radio" name="faq" id="f8" class="faq-toggle">
+    <label class="faq-label" for="f8">
+      <span class="q">Is there a membership fee?</span>
+      <span class="faq-arrow">+</span>
+    </label>
+    <div class="faq-body">
+      No. Joining and volunteering with ACP is completely free. Our movement is funded by ordinary citizens who choose to donate — not by corporate interests or political patronage. Any donations go directly toward campaigns, RTI filings, community training, and outreach. Financial transparency is a core ACP value.
+    </div>
+  </div>
+
+  <!-- CAMPAIGNS -->
+  <div class="cat-pill mt-8" style="background:#39ff1415; color:#39ff14; border:1px solid #39ff1430;">CAMPAIGNS & POLICIES</div>
+
+  <div class="faq-item">
+    <input type="radio" name="faq" id="f9" class="faq-toggle">
+    <label class="faq-label" for="f9">
+      <span class="q">What is the "Survival Instinct" campaign?</span>
+      <span class="faq-arrow">+</span>
+    </label>
+    <div class="faq-body">
+      Survival Instinct is our grassroots mobilisation campaign currently active in 50+ districts. It trains ordinary citizens — farmers, workers, students, homemakers — to become frontline political actors: understanding their rights, filing complaints, engaging local governance, and building ward-level ACP networks. The swarm begins at the ground level.
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <input type="radio" name="faq" id="f10" class="faq-toggle">
+    <label class="faq-label" for="f10">
+      <span class="q">What is "De-cluttering the System"?</span>
+      <span class="faq-arrow">+</span>
+    </label>
+    <div class="faq-body">
+      This campaign focuses on exposing and eliminating redundant bureaucratic layers that drain public resources and block citizen services. We file RTIs (Right to Information requests), demand digital public ledgers, audit government spending records, and publicly challenge systemic inefficiencies. So far, our volunteers have filed <strong>2,400+ RTIs</strong> nationwide.
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <input type="radio" name="faq" id="f11" class="faq-toggle">
+    <label class="faq-label" for="f11">
+      <span class="q">What are ACP's core policy positions?</span>
+      <span class="faq-arrow">+</span>
+    </label>
+    <div class="faq-body">
+      ACP's seven pillars are:
+      <ul>
+        <li><strong>Clean Governance</strong> — zero tolerance for corruption, transparent digital systems</li>
+        <li><strong>Honest Leadership</strong> — no dynasties, ground-up accountable representation</li>
+        <li><strong>Public Safety</strong> — justice for every citizen, not just the powerful</li>
+        <li><strong>Environmental Protection</strong> — rivers, air, and soil as national assets</li>
+        <li><strong>Accountability</strong> — every rupee tracked, every promise audited</li>
+        <li><strong>National Discipline</strong> — civic duty, work ethic, collective responsibility</li>
+        <li><strong>Transparent Administration</strong> — open data, open records, open government</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- CONTACT -->
+  <div class="cat-pill mt-8" style="background:#c9a84c15; color:#c9a84c; border:1px solid #c9a84c30;">CONTACT & SUPPORT</div>
+
+  <div class="faq-item">
+    <input type="radio" name="faq" id="f12" class="faq-toggle">
+    <label class="faq-label" for="f12">
+      <span class="q">How do I contact ACP directly?</span>
+      <span class="faq-arrow">+</span>
+    </label>
+    <div class="faq-body">
+      The fastest way to reach us is by email: <a href="mailto:AamCockroachparty@proton.me">AamCockroachparty@proton.me</a>. We use Proton Mail — end-to-end encrypted — for all official communications. You can also use the <a href="contact.html">Contact page</a> or the <a href="index.html#join">Join the Swarm</a> form on our homepage. We aim to respond within 48 hours.
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <input type="radio" name="faq" id="f13" class="faq-toggle">
+    <label class="faq-label" for="f13">
+      <span class="q">I didn't get a response after submitting the form. What should I do?</span>
+      <span class="faq-arrow">+</span>
+    </label>
+    <div class="faq-body">
+      Our form works via your device's mail client (Gmail, Outlook, Apple Mail, etc.). If you didn't see a mail window open, your device may not have a default mail app configured. In that case, email us directly at <a href="mailto:AamCockroachparty@proton.me">AamCockroachparty@proton.me</a> with your name, role of interest, and message. We'll get back to you within 48 hours.
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <input type="radio" name="faq" id="f14" class="faq-toggle">
+    <label class="faq-label" for="f14">
+      <span class="q">How can I report corruption or file a complaint through ACP?</span>
+      <span class="faq-arrow">+</span>
+    </label>
+    <div class="faq-body">
+      Email us at <a href="mailto:AamCockroachparty@proton.me">AamCockroachparty@proton.me</a> with the subject line <strong>"Corruption Report"</strong>. Include details of the incident, location, and any supporting evidence. Our De-cluttering the System team reviews all submissions. We can help you file an RTI, connect you with legal resources, or escalate through appropriate channels — while protecting your identity.
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="mt-12 p-8 rounded-sm text-center" style="background:linear-gradient(135deg,#0f1a0c,#0a1208); border:1px solid #39ff1425;">
+    <div class="sec-label mb-3">STILL HAVE QUESTIONS?</div>
+    <p class="text-gray-400 font-raj mb-5">Can't find your answer? Reach our team directly — we believe in clear, honest communication.</p>
+    <a href="contact.html" class="inline-block px-8 py-3.5 text-base rounded-sm font-raj font-700 tracking-widest uppercase mr-3" style="background:#39ff14;color:#080a06;box-shadow:0 0 12px #39ff1480;">Contact Us</a>
+    <a href="mailto:AamCockroachparty@proton.me" class="inline-block px-8 py-3.5 text-base rounded-sm font-raj font-700 tracking-widest uppercase" style="border:1.5px solid #39ff14;color:#39ff14;">Email Directly</a>
+  </div>
+
+  <div class="flex flex-wrap justify-center gap-4 mt-10 text-sm font-raj text-gray-500">
+    <a href="index.html" class="hover:text-neon transition-colors">← Back to Home</a>
+    <span class="text-gray-700">·</span>
+    <a href="privacy.html" class="hover:text-neon transition-colors">Privacy Policy</a>
+    <span class="text-gray-700">·</span>
+    <a href="contact.html" class="hover:text-neon transition-colors">Contact</a>
+  </div>
+</main>
+
+<!-- FOOTER -->
+<footer style="background:#050704; border-top:1px solid #1a2a10;">
+  <div class="max-w-4xl mx-auto px-6 py-8">
+    <div class="amber-line mb-6"></div>
+    <div class="flex flex-col md:flex-row items-center justify-between gap-4 text-xs font-mono text-gray-600">
+      <div>© 2025 Aam Cockroach Party (ACP) · All Rights Reserved</div>
+      <div class="flex gap-5">
+        <a href="privacy.html" class="hover:text-neon transition-colors">Privacy Policy</a>
+        <a href="faq.html" style="color:#39ff1470;">FAQ</a>
+        <a href="contact.html" class="hover:text-neon transition-colors">Contact</a>
+      </div>
+      <div style="color:#39ff1460;">Justice. Discipline. Development. 🪲</div>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact — Aam Cockroach Party (ACP)</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rajdhani:wght@400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<script>
+  tailwind.config = {
+    theme: { extend: {
+      colors: { obsidian:'#080a06', chitin:'#0d110a', bark:'#5C2C16', gold:'#c9a84c', neon:'#39ff14' },
+      fontFamily: { bebas:['Bebas Neue','sans-serif'], raj:['Rajdhani','sans-serif'], mono:['Share Tech Mono','monospace'] }
+    }}
+  }
+</script>
+<style>
+  body { background:#080a06; color:#d4cfc8; font-family:'Rajdhani',sans-serif; }
+  body::before { content:''; position:fixed; inset:0; background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E"); pointer-events:none; z-index:0; opacity:0.35; }
+  nav { background:#080a06ee; backdrop-filter:blur(12px); border-bottom:1px solid #1a2a10; }
+  nav a:hover { color:#39ff14; }
+  .amber-line { background:linear-gradient(90deg,#8B4513,#c9a84c,#8B4513); height:2px; }
+  .sec-label { font-family:'Share Tech Mono',monospace; color:#39ff14; font-size:0.72rem; letter-spacing:0.25em; }
+  .sec-title { font-family:'Bebas Neue',sans-serif; line-height:1; }
+  .glow-input { background:#0d110a; border:1px solid #2a3a1a; color:#d4cfc8; transition:border-color 0.2s, box-shadow 0.2s; width:100%; padding:0.75rem 1rem; border-radius:2px; font-family:'Rajdhani',sans-serif; font-size:0.95rem; }
+  .glow-input:focus { outline:none; border-color:#39ff14; box-shadow:0 0 0 2px #39ff1430, 0 0 12px #39ff1440; }
+  .glow-input::placeholder { color:#3a4a30; }
+  .chitin-card { background:linear-gradient(135deg,#0f1a0c 0%,#0a1208 100%); border:1px solid #2a3a1a; box-shadow:inset 0 1px 0 #39ff1415; }
+  .contact-card { background:#0d110a; border:1px solid #1a2a10; border-radius:2px; padding:1.5rem; transition:border-color 0.2s, box-shadow 0.2s; }
+  .contact-card:hover { border-color:#39ff1440; box-shadow:0 0 20px #39ff1410; }
+  .neon-btn { background:#39ff14; color:#080a06; font-family:'Rajdhani',sans-serif; font-weight:700; letter-spacing:0.08em; box-shadow:0 0 12px #39ff1480, 0 0 30px #39ff1430; transition:all 0.2s; }
+  .neon-btn:hover { box-shadow:0 0 20px #39ff14cc, 0 0 50px #39ff1466; transform:translateY(-2px); }
+  .radio-opt input:checked + span { color:#39ff14; border-color:#39ff14; box-shadow:0 0 8px #39ff1460; }
+  .radio-opt span { border:1px solid #2a3a1a; transition:all 0.2s; display:block; text-align:center; padding:0.6rem 0.5rem; border-radius:2px; font-size:0.875rem; font-weight:600; color:#6a7a60; cursor:pointer; }
+  ::-webkit-scrollbar { width:6px; } ::-webkit-scrollbar-track { background:#080a06; } ::-webkit-scrollbar-thumb { background:#39ff1460; border-radius:3px; }
+  .scanline { position:fixed; top:0; left:0; right:0; height:2px; background:linear-gradient(transparent,#39ff1420,transparent); animation:scan 6s linear infinite; pointer-events:none; z-index:1; }
+  @keyframes scan { 0%{transform:translateY(-100%)} 100%{transform:translateY(100vh)} }
+  @keyframes pulse-ring { 0%{transform:scale(0.92);opacity:0.5} 50%{transform:scale(1.04);opacity:0.15} 100%{transform:scale(0.92);opacity:0.5} }
+  .pulse-ring { animation:pulse-ring 3s ease-in-out infinite; }
+  select.glow-input option { background:#0d110a; }
+</style>
+</head>
+<body>
+<div class="scanline"></div>
+
+<!-- NAV -->
+<nav class="fixed top-0 left-0 right-0 z-50 py-3 px-6 flex items-center justify-between">
+  <a href="index.html" class="flex items-center gap-3">
+    <svg width="36" height="36" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" style="filter:drop-shadow(0 0 10px #39ff1460)">
+      <circle cx="40" cy="40" r="38" fill="#0d110a" stroke="#8B4513" stroke-width="2"/>
+      <ellipse cx="40" cy="44" rx="11" ry="17" fill="#5C2C16"/>
+      <ellipse cx="40" cy="38" rx="9" ry="10" fill="#7a3a1e"/>
+      <ellipse cx="40" cy="27" rx="6" ry="5" fill="#5C2C16"/>
+      <line x1="37" y1="23" x2="27" y2="12" stroke="#c9a84c" stroke-width="1.2" stroke-linecap="round"/>
+      <line x1="43" y1="23" x2="53" y2="12" stroke="#c9a84c" stroke-width="1.2" stroke-linecap="round"/>
+    </svg>
+    <div>
+      <div class="font-bebas text-white text-lg tracking-widest leading-none">AAM COCKROACH</div>
+      <div class="sec-label text-xs">PARTY · ACP</div>
+    </div>
+  </a>
+  <div class="flex items-center gap-6 text-sm font-raj font-semibold tracking-wider text-gray-400">
+    <a href="index.html#manifesto" class="hidden md:block transition-colors">MANIFESTO</a>
+    <a href="index.html#campaigns" class="hidden md:block transition-colors">CAMPAIGNS</a>
+    <a href="index.html#join" class="hidden md:block transition-colors">JOIN</a>
+    <a href="index.html#join" class="px-4 py-1.5 text-sm rounded-sm font-raj font-700 tracking-widest uppercase" style="background:#39ff14;color:#080a06;box-shadow:0 0 12px #39ff1480;">JOIN THE SWARM</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="pt-32 pb-14 px-6 relative overflow-hidden">
+  <div class="absolute inset-0 pointer-events-none">
+    <svg class="absolute inset-0 w-full h-full opacity-[0.04]" xmlns="http://www.w3.org/2000/svg">
+      <defs><pattern id="grid" width="48" height="48" patternUnits="userSpaceOnUse"><path d="M 48 0 L 0 0 0 48" fill="none" stroke="#39ff14" stroke-width="0.5"/></pattern></defs>
+      <rect width="100%" height="100%" fill="url(#grid)"/>
+    </svg>
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full" style="background:radial-gradient(circle,#39ff1406 0%,transparent 70%);"></div>
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full pulse-ring" style="border:1px solid #39ff1415;"></div>
+  </div>
+  <div class="max-w-5xl mx-auto relative z-10 text-center">
+    <div class="sec-label mb-3">// REACH THE SWARM //</div>
+    <h1 class="sec-title text-white text-6xl md:text-8xl mb-4">CONTACT <span style="color:#39ff14">ACP</span></h1>
+    <div class="amber-line max-w-xs mx-auto mb-5"></div>
+    <p class="text-gray-400 font-raj text-base max-w-xl mx-auto">We believe in direct, honest communication. No automated bots, no corporate gatekeeping — real people, real responses.</p>
+  </div>
+</section>
+
+<!-- MAIN CONTENT -->
+<main class="max-w-5xl mx-auto px-6 pb-24 relative z-10">
+
+  <!-- Quick contact cards -->
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-12">
+
+    <div class="contact-card flex flex-col gap-3">
+      <div class="text-2xl">📧</div>
+      <div class="font-mono text-xs text-neon/60 tracking-widest">PRIMARY EMAIL</div>
+      <div class="font-bebas text-lg text-white tracking-wider">General Enquiries</div>
+      <a href="mailto:AamCockroachparty@proton.me" class="text-sm font-mono break-all" style="color:#39ff14;">AamCockroachparty@proton.me</a>
+      <p class="text-gray-500 text-xs font-raj">End-to-end encrypted via Proton Mail. Response within 48 hours.</p>
+    </div>
+
+    <div class="contact-card flex flex-col gap-3">
+      <div class="text-2xl">🪲</div>
+      <div class="font-mono text-xs text-neon/60 tracking-widest">ENLISTMENT</div>
+      <div class="font-bebas text-lg text-white tracking-wider">Join the Movement</div>
+      <a href="index.html#join" class="text-sm font-raj font-600" style="color:#39ff14;">→ Use the Join Form</a>
+      <p class="text-gray-500 text-xs font-raj">Volunteer, donate, run for office, or help spread the word across India.</p>
+    </div>
+
+    <div class="contact-card flex flex-col gap-3">
+      <div class="text-2xl">📋</div>
+      <div class="font-mono text-xs text-neon/60 tracking-widest">REPORT CORRUPTION</div>
+      <div class="font-bebas text-lg text-white tracking-wider">File a Complaint</div>
+      <a href="mailto:AamCockroachparty@proton.me?subject=Corruption%20Report" class="text-sm font-raj font-600" style="color:#39ff14;">→ Email with Subject: "Corruption Report"</a>
+      <p class="text-gray-500 text-xs font-raj">We help you file RTIs and escalate through proper channels anonymously.</p>
+    </div>
+
+  </div>
+
+  <!-- Contact form + info side by side -->
+  <div class="grid grid-cols-1 lg:grid-cols-5 gap-8">
+
+    <!-- FORM (3 cols) -->
+    <div class="lg:col-span-3 chitin-card rounded-sm p-8">
+      <div class="sec-label mb-2">SEND A MESSAGE</div>
+      <h2 class="font-bebas text-3xl text-white tracking-wider mb-6">GET IN TOUCH</h2>
+
+      <div class="space-y-5">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block font-mono text-xs text-neon/70 tracking-widest mb-1.5">YOUR NAME *</label>
+            <input id="cName" type="text" placeholder="Full Name" class="glow-input">
+          </div>
+          <div>
+            <label class="block font-mono text-xs text-neon/70 tracking-widest mb-1.5">EMAIL ADDRESS *</label>
+            <input id="cEmail" type="email" placeholder="your@email.com" class="glow-input">
+          </div>
+        </div>
+
+        <div>
+          <label class="block font-mono text-xs text-neon/70 tracking-widest mb-1.5">SUBJECT</label>
+          <select id="cSubject" class="glow-input">
+            <option value="General Enquiry">General Enquiry</option>
+            <option value="Volunteer Application">Volunteer Application</option>
+            <option value="Donation Query">Donation Query</option>
+            <option value="Media / Press">Media / Press</option>
+            <option value="Corruption Report">Corruption Report</option>
+            <option value="RTI Assistance">RTI Assistance</option>
+            <option value="Run for Office">Run for Office</option>
+            <option value="Partnership / Collaboration">Partnership / Collaboration</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="block font-mono text-xs text-neon/70 tracking-widest mb-1.5">YOUR MESSAGE *</label>
+          <textarea id="cMsg" rows="5" placeholder="Tell us what's on your mind. Be direct — we appreciate honesty." class="glow-input resize-none"></textarea>
+        </div>
+
+        <div>
+          <label class="block font-mono text-xs text-neon/70 tracking-widest mb-2">I AM A</label>
+          <div class="grid grid-cols-3 gap-2">
+            <label class="radio-opt">
+              <input type="radio" name="cRole" value="Citizen" class="sr-only" checked>
+              <span>🧑 Citizen</span>
+            </label>
+            <label class="radio-opt">
+              <input type="radio" name="cRole" value="Journalist" class="sr-only">
+              <span>📰 Press</span>
+            </label>
+            <label class="radio-opt">
+              <input type="radio" name="cRole" value="Volunteer" class="sr-only">
+              <span>🪲 Volunteer</span>
+            </label>
+          </div>
+        </div>
+
+        <button id="contactBtn" onclick="sendContact(this)" class="neon-btn w-full py-4 text-base rounded-sm uppercase tracking-widest">
+          📤 SEND MESSAGE TO ACP
+        </button>
+
+        <p class="text-center text-xs text-gray-600 font-mono">
+          Clicking sends via your mail app to <span style="color:#39ff1470;">AamCockroachparty@proton.me</span>
+        </p>
+      </div>
+    </div>
+
+    <!-- INFO (2 cols) -->
+    <div class="lg:col-span-2 flex flex-col gap-5">
+
+      <!-- Response times -->
+      <div class="contact-card">
+        <div class="font-mono text-xs text-neon/60 tracking-widest mb-3">RESPONSE TIMES</div>
+        <div class="space-y-3">
+          <div class="flex items-center justify-between text-sm font-raj">
+            <span class="text-gray-400">General Enquiries</span>
+            <span style="color:#39ff14;" class="font-mono text-xs">≤ 48 hrs</span>
+          </div>
+          <div class="h-px bg-gray-800"></div>
+          <div class="flex items-center justify-between text-sm font-raj">
+            <span class="text-gray-400">Volunteer Applications</span>
+            <span style="color:#39ff14;" class="font-mono text-xs">≤ 72 hrs</span>
+          </div>
+          <div class="h-px bg-gray-800"></div>
+          <div class="flex items-center justify-between text-sm font-raj">
+            <span class="text-gray-400">Corruption Reports</span>
+            <span style="color:#c9a84c;" class="font-mono text-xs">≤ 24 hrs</span>
+          </div>
+          <div class="h-px bg-gray-800"></div>
+          <div class="flex items-center justify-between text-sm font-raj">
+            <span class="text-gray-400">Media / Press</span>
+            <span style="color:#39ff14;" class="font-mono text-xs">≤ 48 hrs</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Official email -->
+      <div class="contact-card" style="border-color:#39ff1430; box-shadow:0 0 20px #39ff1408;">
+        <div class="font-mono text-xs text-neon/60 tracking-widest mb-2">OFFICIAL EMAIL</div>
+        <a href="mailto:AamCockroachparty@proton.me" class="font-mono text-sm break-all block mb-3" style="color:#39ff14;">AamCockroachparty@proton.me</a>
+        <div class="flex items-center gap-2 text-xs text-gray-500 font-raj">
+          <span style="color:#39ff14;">🔒</span> End-to-end encrypted · Proton Mail
+        </div>
+      </div>
+
+      <!-- What to expect -->
+      <div class="contact-card">
+        <div class="font-mono text-xs text-neon/60 tracking-widest mb-3">WHAT TO EXPECT</div>
+        <div class="space-y-2 text-sm font-raj text-gray-400">
+          <div class="flex gap-2"><span style="color:#39ff14;">→</span><span>A real human reads every message</span></div>
+          <div class="flex gap-2"><span style="color:#39ff14;">→</span><span>No automated responses or bots</span></div>
+          <div class="flex gap-2"><span style="color:#39ff14;">→</span><span>Confidential handling guaranteed</span></div>
+          <div class="flex gap-2"><span style="color:#39ff14;">→</span><span>We will always respond honestly</span></div>
+          <div class="flex gap-2"><span style="color:#39ff14;">→</span><span>Your data is never shared or sold</span></div>
+        </div>
+      </div>
+
+      <!-- FAQ link -->
+      <div class="contact-card text-center" style="border-color:#c9a84c30;">
+        <div class="text-2xl mb-2">❓</div>
+        <p class="text-gray-400 font-raj text-sm mb-4">Have a common question? Check our FAQ — it may already be answered.</p>
+        <a href="faq.html" class="inline-block px-6 py-2.5 text-sm font-raj font-700 tracking-widest uppercase rounded-sm" style="border:1.5px solid #c9a84c; color:#c9a84c; transition:all 0.2s;" onmouseover="this.style.background='#c9a84c15'" onmouseout="this.style.background='transparent'">→ View FAQ</a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Bottom slogan strip -->
+  <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-4 text-center">
+    <div class="py-4 rounded-sm" style="border:1px solid #1a2a10;">
+      <div class="font-bebas text-xl tracking-wider" style="color:#39ff14;">TRUTH OVER POWER</div>
+    </div>
+    <div class="py-4 rounded-sm" style="border:1px solid #1a2a10;">
+      <div class="font-bebas text-xl tracking-wider text-white">JUSTICE. DISCIPLINE. DEVELOPMENT.</div>
+    </div>
+    <div class="py-4 rounded-sm" style="border:1px solid #1a2a10;">
+      <div class="font-bebas text-xl tracking-wider" style="color:#c9a84c;">JANTA KI TAQAT, ACP KE SAATH</div>
+    </div>
+  </div>
+
+  <div class="flex flex-wrap justify-center gap-4 mt-10 text-sm font-raj text-gray-500">
+    <a href="index.html" class="hover:text-neon transition-colors">← Back to Home</a>
+    <span class="text-gray-700">·</span>
+    <a href="privacy.html" class="hover:text-neon transition-colors">Privacy Policy</a>
+    <span class="text-gray-700">·</span>
+    <a href="faq.html" class="hover:text-neon transition-colors">FAQ</a>
+  </div>
+</main>
+
+<!-- FOOTER -->
+<footer style="background:#050704; border-top:1px solid #1a2a10;">
+  <div class="max-w-5xl mx-auto px-6 py-8">
+    <div class="amber-line mb-6"></div>
+    <div class="flex flex-col md:flex-row items-center justify-between gap-4 text-xs font-mono text-gray-600">
+      <div>© 2025 Aam Cockroach Party (ACP) · All Rights Reserved</div>
+      <div class="flex gap-5">
+        <a href="privacy.html" class="hover:text-neon transition-colors">Privacy Policy</a>
+        <a href="faq.html" class="hover:text-neon transition-colors">FAQ</a>
+        <a href="contact.html" style="color:#39ff1470;">Contact</a>
+      </div>
+      <div style="color:#39ff1460;">Built to Survive. Built to Serve. 🪲</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  function sendContact(btn) {
+    const name    = document.getElementById('cName').value.trim();
+    const email   = document.getElementById('cEmail').value.trim();
+    const subject = document.getElementById('cSubject').value;
+    const msg     = document.getElementById('cMsg').value.trim();
+    const role    = (document.querySelector('input[name="cRole"]:checked') || {}).value || 'Citizen';
+
+    // Validate
+    let valid = true;
+    ['cName','cEmail','cMsg'].forEach(id => {
+      const el = document.getElementById(id);
+      if (!el.value.trim()) {
+        el.style.borderColor = '#ff4444';
+        el.style.boxShadow = '0 0 10px #ff444460';
+        setTimeout(() => { el.style.borderColor=''; el.style.boxShadow=''; }, 2500);
+        valid = false;
+      }
+    });
+    if (!valid) return;
+
+    const sub = encodeURIComponent(`[ACP] ${subject} — ${name}`);
+    const body = encodeURIComponent(
+`ACP Contact Form Submission
+============================
+Name    : ${name}
+Email   : ${email}
+Type    : ${role}
+Subject : ${subject}
+
+Message:
+${msg}
+
+— Submitted via AamCockroachParty.org/contact`
+    );
+
+    window.location.href = `mailto:AamCockroachparty@proton.me?subject=${sub}&body=${body}`;
+
+    btn.textContent = '✅ MESSAGE SENT — WE\'LL RESPOND WITHIN 48 HRS';
+    btn.style.background = '#1a4a10';
+    btn.style.color = '#39ff14';
+    btn.style.border = '1px solid #39ff14';
+    btn.style.boxShadow = '0 0 20px #39ff1460';
+  }
+
+  // Radio highlight
+  document.querySelectorAll('.radio-opt input').forEach(r => {
+    r.addEventListener('change', () => {
+      document.querySelectorAll('.radio-opt span').forEach(s => { s.style.color=''; s.style.borderColor=''; s.style.boxShadow=''; });
+      const span = r.nextElementSibling;
+      span.style.color = '#39ff14';
+      span.style.borderColor = '#39ff14';
+      span.style.boxShadow = '0 0 10px #39ff1450';
+    });
+  });
+  // Initial state
+  const first = document.querySelector('.radio-opt input[checked]');
+  if (first) { first.nextElementSibling.style.color='#39ff14'; first.nextElementSibling.style.borderColor='#39ff14'; first.nextElementSibling.style.boxShadow='0 0 10px #39ff1450'; }
+</script>
+</body>
+</html>
